@@ -7,7 +7,7 @@ Below is the original documentation and the tutorial followed to set up this bot
   
 ## Setup
 
-This bot will not create icons for you, so the administrator will need to add them to the server. They are in the icons folder, the lower case icons are spacers to give color to each card row. The uppercase icons are the region icons themselves used at the top of the deck description.
+This bot will not create icons for you, so the administrator will need to add them to the server. They are in the icons folder, the lower case icons are spacers to give color to each card row. The uppercase icons are the region icons themselves used at the top of the deck description. The files are already named as how the bot will use them. This bot will work fine without the icons however.
 
 # How to Build Your First Discord Bot with Node.js
 
