@@ -1,10 +1,13 @@
-# Legends of Runeterra Discord Bot:
+# Legends of Runeterra Discord Bot
 
 Below is the original documentation and the tutorial followed to set up this bot. The bot in this repo has been updated to have these commands:
 
 - `!deck {code}`
   - Prints the given deck in an embedded message.
+  
+## Setup
 
+This bot will not create icons for you, so the administrator will need to add them to the server. They are in the icons folder, the lower case icons are spacers to give color to each card row. The uppercase icons are the region icons themselves used at the top of the deck description.
 
 # How to Build Your First Discord Bot with Node.js
 

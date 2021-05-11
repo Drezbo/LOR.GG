@@ -52,7 +52,7 @@ bot.login(TOKEN).then(() =>
 	.then(json => {
 		data.core = json;
 		data.emojis = Object.fromEntries(data.core.regions.map(region => [ region.abbreviation, bot.emojis.cache.find(item => item.name === region.abbreviation) ]));
-		data.regions = Object.fromEntries(data.core.regions.map(region => [ region.abbreviation, `${data.emojis[region.abbreviation]} ${region.name}` ]));
+		data.regions = Object.fromEntries(data.core.regions.map(region => [ region.abbreviation, `${data.emojis[region.abbreviation] || ''} ${region.name}` ]));
 		console.log('loaded core data.');
 	})
 );
@@ -108,7 +108,7 @@ bot.on('message', msg => {
 		for (const key of keys) {
 			if (!types[key]) { continue; }
 			const type = types[key].sort(sortCards);
-			embedd.addField(key, type.map(cd => `\`${cd.card.count}×\`${bot.emojis.cache.find(item => item.name === cd.card.faction.shortCode.toLowerCase())}${cd.data.name}`).join('\r\n'), true);
+			embedd.addField(key, type.map(cd => `\`${cd.card.count}×\`${bot.emojis.cache.find(item => item.name === cd.card.faction.shortCode.toLowerCase()) || ' '}${cd.data.name}`).join('\r\n'), true);
 		}
 		
 		// Add mobalytics link
