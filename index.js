@@ -108,7 +108,7 @@ bot.on('message', msg => {
 		for (const key of keys) {
 			if (!types[key]) { continue; }
 			const type = types[key].sort(sortCards);
-			embedd.addField(key, type.map(cd => `\`${cd.card.count}×\`${bot.emojis.cache.find(item => item.name === cd.card.faction.shortCode.toLowerCase()) || ' '}${cd.data.name}`).join('\r\n'), true);
+			embedd.addField(`${key}s`, type.map(cd => `\`${cd.card.count}×\`${bot.emojis.cache.find(item => item.name === cd.card.faction.shortCode.toLowerCase()) || ' '}${cd.data.name}`).join('\r\n'), true);
 		}
 		
 		// Add mobalytics link
