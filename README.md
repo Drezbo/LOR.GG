@@ -1,3 +1,11 @@
+# Legends of Runeterra Discord Bot:
+
+Below is the original documentation and the tutorial followed to set up this bot. The bot in this repo has been updated to have these commands:
+
+- `!deck {code}`
+  - Prints the given deck in an embedded message.
+
+
 # How to Build Your First Discord Bot with Node.js
 
 Michiel Mulders shows you how to install and set up a new Discord bot, which is made easier thanks to the API offered by the Discord.js package.
@@ -16,13 +24,6 @@ Link to article on SitePoint: [https://www.sitepoint.com/discord-bot-node-js/](h
 3. Add Discord credentials in a `.env` file
 3. Run `node index.js`
 4. Interact with your Discord bot via your web browser
-
-## Legends of Runeterra update:
-
-The above is the original documentation and the tutorial followed to set up this bot. The bot in this repo has been updated to have these commands:
-
-- `!deck {code}`
-  - Prints the given deck in an embedded message.
 
 ## License
 
