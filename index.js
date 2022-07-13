@@ -1,3 +1,5 @@
+
+@@ -0,0 +1,119 @@
 const { DeckEncoder } = require('runeterra');
 const fetch = require('node-fetch');
 
@@ -52,7 +54,7 @@ bot.login(TOKEN).then(() =>
 	.then(json => {
 		data.core = json;
 		data.emojis = Object.fromEntries(data.core.regions.map(region => [ region.abbreviation, bot.emojis.cache.find(item => item.name === region.abbreviation) ]));
-		data.regions = Object.fromEntries(data.core.regions.map(region => [ region.abbreviation, `${data.emojis[region.abbreviation] || ''} ${region.name}` ]));
+		data.regions = Object.fromEntries(data.core.regions.map(region => [ region.abbreviation, `${data.emojis[region.abbreviation]} ${region.name}` ]));
 		console.log('loaded core data.');
 	})
 );
@@ -80,9 +82,9 @@ bot.on('message', msg => {
 		// Convert deckcode to deck
 		const deckcode = msg.content.substr(6, msg.content.length - 1);
 		const deck = DeckEncoder.decode(deckcode);
-		
+
 		const embedd = new Discord.MessageEmbed().setColor('#000000');
-		
+
 		// Get regions
 		const regions = [...new Set(deck.map(card => card.faction.shortCode))];
 		// embedd.setTitle(regions.map(region => data.regions[region]).join('\r\n'));
@@ -90,7 +92,7 @@ bot.on('message', msg => {
 		// for (const region of regions) {
 			// embedd.addField(data.regions[region], '\u200B', false);
 		// }
-		
+
 		// Group by type
 		const cardData = deck.map(card => ({ card, data: data.cards.find(dc => dc.cardCode === card.code) }));
 		const types = {};
@@ -100,20 +102,20 @@ bot.on('message', msg => {
 			if (!types[type]) { types[type] = []; }
 			types[type].push(c);
 		}
-		
+
 		// embedd.setImage('https://cdn-lor.mobalytics.gg/production/images/cards-preview/04IO005.webp');
-		
+
 		// Generate printout of cards
 		const keys = ['Champion', 'Follower', 'Spell', 'Landmark'];
 		for (const key of keys) {
 			if (!types[key]) { continue; }
 			const type = types[key].sort(sortCards);
-			embedd.addField(`${key}s`, type.map(cd => `\`${cd.card.count}×\`${bot.emojis.cache.find(item => item.name === cd.card.faction.shortCode.toLowerCase()) || ' '}${cd.data.name}`).join('\r\n'), true);
+			embedd.addField(key, type.map(cd => `\`${cd.card.count}×\`${bot.emojis.cache.find(item => item.name === cd.card.faction.shortCode.toLowerCase())}${cd.data.name}`).join('\r\n'), true);
 		}
-		
-		// Add mobalytics link
-		embedd.addField('Mobalytics Link',`https://lor.mobalytics.gg/decks/code/${deckcode}`);
-		
+
+		// Add LOR.GG link
+		embedd.addField('LOR.GG Link',`https://lor.gg/deck/${deckcode}`);
+
 		msg.channel.send(embedd);
 	}
 });
